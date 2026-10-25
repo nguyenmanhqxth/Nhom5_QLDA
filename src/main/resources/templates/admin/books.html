@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quản lý sách')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Quản lý sách</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<div class="d-flex gap-3 mb-3"><a class="btn btn-primary" th:href="@{/admin/books/new}">Thêm sách</a><form method="get" class="d-flex gap-2"><input name="search" class="form-control" placeholder="Tên sách" th:value="${search}"><button class="btn btn-outline-primary">Tìm</button></form></div>
+<div class="table-responsive card"><table class="table"><thead><tr><th>Tên sách</th><th>Tác giả</th><th>Thể loại</th><th>Tổng / Còn</th><th>Thao tác</th></tr></thead><tbody><tr th:each="b : ${books}">
+<td th:text="${b.title}"></td><td th:text="${b.author}"></td><td th:text="${b.category != null ? b.category.name : '—'}"></td><td th:text="${b.totalCopies + ' / ' + b.availableCopies}"></td>
+<td><a class="btn btn-sm btn-outline-primary" th:href="@{/admin/books/edit/{id}(id=${b.id})}">Sửa</a> <form class="d-inline" th:action="@{/admin/books/delete/{id}(id=${b.id})}" method="post" onsubmit="return confirm('Xóa sách?')"><button class="btn btn-sm btn-outline-danger">Xóa</button></form></td></tr></tbody></table></div>
+</main></body></html>

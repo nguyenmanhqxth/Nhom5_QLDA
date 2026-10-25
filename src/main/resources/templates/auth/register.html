@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Đăng ký độc giả')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Đăng ký độc giả</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<form th:action="@{/auth/register}" method="post" class="card p-4 mx-auto" style="max-width:600px">
+<label>Họ và tên<input name="fullName" class="form-control" required maxlength="255"></label>
+<label>Tên đăng nhập<input name="username" class="form-control" required pattern="[A-Za-z0-9_]{3,50}" title="3–50 chữ, số hoặc dấu gạch dưới"></label>
+<label>Email<input name="email" type="email" class="form-control" required maxlength="255"></label>
+<label>Mật khẩu<input name="password" type="password" class="form-control" required minlength="6" maxlength="72"></label>
+<label>Xác nhận mật khẩu<input name="confirmPassword" type="password" class="form-control" required minlength="6" maxlength="72"></label>
+<label>Số điện thoại<input name="phone" class="form-control" required maxlength="30"></label>
+<label>Địa chỉ<input name="address" class="form-control" maxlength="255"></label><button class="btn btn-primary mt-3">Đăng ký</button></form>
+</main></body></html>

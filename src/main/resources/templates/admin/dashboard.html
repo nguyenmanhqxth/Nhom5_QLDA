@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quản trị thư viện')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Quản trị thư viện</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<div class="card p-4"><p>Quản lý sách, thể loại, hồ sơ độc giả và xử lý yêu cầu mượn.</p>
+<div class="d-flex gap-3 flex-wrap"><a class="btn btn-primary" th:href="@{/admin/books}">Quản lý sách</a><a class="btn btn-outline-primary" th:href="@{/admin/categories}">Thể loại</a><a class="btn btn-outline-primary" th:href="@{/admin/readers}">Độc giả</a><a class="btn btn-outline-primary" th:href="@{/admin/borrows}">Xử lý phiếu mượn</a></div></div>
+</main></body></html>

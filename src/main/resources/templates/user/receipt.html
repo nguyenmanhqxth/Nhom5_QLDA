@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Phiếu xác nhận mượn sách')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Phiếu xác nhận mượn sách</h1><div th:replace="~{fragments/layout :: messages}"></div>
+<div class="card p-4"><h2 class="h5">Phiếu <span th:text="${borrow.receiptCode != null ? borrow.receiptCode : '#' + borrow.id}"></span></h2>
+<p>Độc giả: <span th:text="${borrow.reader.user.fullName}"></span></p><p>Mã thẻ: <span th:text="${borrow.reader.readerCode}"></span></p><p>Sách: <span th:text="${borrow.book.title}"></span></p>
+<p>Trạng thái: <span th:text="${borrow.status}"></span></p><p>Phí mượn (đồng): <span th:text="${borrow.borrowFee}"></span></p><p>Ngày mượn: <span th:text="${borrow.borrowDate}"></span> — Hạn trả: <span th:text="${borrow.dueDate}"></span></p>
+<p>Người xác nhận giao: <span th:text="${borrow.staff != null ? borrow.staff.username : 'Chưa giao'}"></span></p><p>Thời gian giao: <span th:text="${borrow.paymentConfirmedAt}"></span></p><p th:text="${borrow.notes}"></p></div></main></body></html>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quản lý độc giả')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Quản lý độc giả</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<form method="get" class="d-flex gap-2 mb-3"><input class="form-control" name="search" th:value="${search}" placeholder="Tên, tài khoản, email, số điện thoại hoặc mã thẻ"><button class="btn btn-primary">Tìm</button></form>
+<div class="table-responsive card"><table class="table"><thead><tr><th>Mã thẻ</th><th>Họ tên / Tài khoản</th><th>Email / SĐT</th><th>Hạn thẻ</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody><tr th:each="r : ${readers}"><td th:text="${r.readerCode}"></td><td><span th:text="${r.user.fullName}"></span><br><small th:text="${r.user.username}"></small></td><td><span th:text="${r.user.email}"></span><br><span th:text="${r.user.phone}"></span></td><td th:text="${r.memberExpiry}"></td><td th:text="${r.user.enabled ? 'Hoạt động' : 'Đã khóa'}"></td><td><a class="btn btn-sm btn-outline-primary" th:href="@{/admin/readers/edit/{id}(id=${r.id})}">Sửa hồ sơ</a><form th:action="@{/admin/readers/enabled/{id}(id=${r.id})}" method="post" class="mt-2"><input type="hidden" name="enabled" th:value="${!r.user.enabled}"><button class="btn btn-sm btn-outline-secondary" th:text="${r.user.enabled ? 'Khóa' : 'Mở khóa'}"></button></form></td></tr></tbody></table></div><p th:if="${#lists.isEmpty(readers)}">Không tìm thấy độc giả.</p>
+</main></body></html>

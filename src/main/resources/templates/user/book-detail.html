@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Chi tiết sách')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Chi tiết sách</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<div class="card p-4"><h2 th:text="${book.title}"></h2><p>Tác giả: <span th:text="${book.author}"></span></p>
+<p>Nhà xuất bản: <span th:text="${book.publisher}"></span></p><p>Thể loại: <span th:text="${book.category != null ? book.category.name : 'Chưa phân loại'}"></span></p>
+<p th:text="${book.description}"></p><p>Số bản còn: <strong th:text="${book.availableCopies}"></strong></p>
+<p>Phí mượn: 70.000 đồng/phiếu. Thời hạn mượn: 14 ngày kể từ khi nhận sách.</p>
+<form sec:authorize="hasRole('USER')" th:action="@{/user/borrow/{id}(id=${book.id})}" method="post"><button class="btn btn-primary" th:disabled="${book.availableCopies <= 0}">Đăng ký mượn</button></form>
+<a sec:authorize="isAnonymous()" th:href="@{/auth/login}">Đăng nhập để mượn sách</a></div>
+</main></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Đăng nhập')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Đăng nhập</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<div class="card p-4 mx-auto" style="max-width:480px">
+<p th:if="${param.error}" class="alert alert-danger">Thông tin đăng nhập không đúng hoặc tài khoản đã bị khóa.</p>
+<p th:if="${param.logout}" class="alert alert-success">Đã đăng xuất.</p>
+<form th:action="@{/auth/login}" method="post"><label for="username">Tên đăng nhập</label><input id="username" class="form-control" name="username" required autocomplete="username">
+<label for="password">Mật khẩu</label><input id="password" class="form-control" type="password" name="password" required autocomplete="current-password">
+<button class="btn btn-primary mt-3">Đăng nhập</button></form><a class="mt-3" th:href="@{/auth/register}">Đăng ký tài khoản độc giả</a></div>
+</main></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Cập nhật hồ sơ độc giả')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Cập nhật hồ sơ độc giả</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<form th:action="@{/admin/readers/save/{id}(id=${reader.id})}" method="post" class="card p-4">
+<label>Họ tên<input name="fullName" th:value="${reader.user.fullName}" class="form-control" required maxlength="255"></label>
+<label>Email<input name="email" type="email" th:value="${reader.user.email}" class="form-control" required maxlength="255"></label>
+<label>Số điện thoại<input name="phone" th:value="${reader.user.phone}" class="form-control" required maxlength="30"></label>
+<label>Địa chỉ<input name="address" th:value="${reader.user.address}" class="form-control" maxlength="255"></label>
+<label>Mã thẻ<input name="readerCode" th:value="${reader.readerCode}" class="form-control" required maxlength="50"></label>
+<label>Hạn thẻ<input name="memberExpiry" type="date" th:value="${reader.memberExpiry}" class="form-control" required></label>
+<label>Giới hạn mượn<input name="maxBorrowAllowed" type="number" min="1" max="20" th:value="${reader.maxBorrowAllowed}" class="form-control" required></label>
+<button class="btn btn-primary mt-3">Lưu hồ sơ</button></form>
+</main></body></html>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quản lý thể loại')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Quản lý thể loại</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<form th:action="@{/admin/categories/save}" method="post" class="card p-3 mb-4"><h2 class="h5">Thêm thể loại</h2><input name="name" class="form-control mb-2" placeholder="Tên thể loại" required maxlength="100"><input name="description" class="form-control mb-2" placeholder="Mô tả" maxlength="255"><button class="btn btn-primary">Thêm</button></form>
+<div th:each="c : ${categories}" class="card p-3 mb-3"><form th:action="@{/admin/categories/save}" method="post" class="d-flex gap-2 flex-wrap"><input type="hidden" name="id" th:value="${c.id}"><input aria-label="Tên thể loại" name="name" th:value="${c.name}" class="form-control" required maxlength="100"><input aria-label="Mô tả" name="description" th:value="${c.description}" class="form-control" maxlength="255"><button class="btn btn-outline-primary">Lưu thay đổi</button></form><form th:action="@{/admin/categories/delete/{id}(id=${c.id})}" method="post" class="mt-2" onsubmit="return confirm('Xóa thể loại?')"><button class="btn btn-outline-danger">Xóa</button></form></div>
+</main></body></html>

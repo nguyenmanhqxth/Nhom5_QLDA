@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Trang chủ độc giả')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Trang chủ độc giả</h1><div th:replace="~{fragments/layout :: messages}"></div>
+<p>Khám phá các sách mới trong thư viện.</p><div class="row g-3"><div th:each="book : ${books}" class="col-sm-6 col-lg-4"><div class="card p-4 book">
+<span class="text-muted small" th:text="${book.category != null ? book.category.name : 'Chưa phân loại'}"></span>
+<h2 class="h5 mt-2" th:text="${book.title}"></h2><p th:text="${book.author}"></p>
+<p th:text="${book.availableCopies > 0 ? 'Còn ' + book.availableCopies + ' bản' : 'Hết sách'}"></p>
+<a th:href="@{/books/detail/{id}(id=${book.id})}" class="btn btn-outline-primary mt-auto">Xem chi tiết</a></div></div></div>
+<p th:if="${#lists.isEmpty(books)}" class="alert alert-info">Không tìm thấy sách.</p></main></body></html>

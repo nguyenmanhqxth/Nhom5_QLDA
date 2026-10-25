@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Phiếu mượn của tôi')}"></head>
+<body><nav th:replace="~{fragments/layout :: nav}"></nav><main class="container py-4">
+<h1 class="h3 mb-4">Phiếu mượn của tôi</h1><div th:replace="~{fragments/layout :: messages}"></div>
+
+<div class="table-responsive card"><table class="table"><thead><tr><th>Sách</th><th>Mã phiếu</th><th>Trạng thái</th><th>Phí</th><th>Hạn trả</th><th>Ghi chú</th><th>Chi tiết</th></tr></thead><tbody><tr th:each="b : ${borrows}"><td th:text="${b.book.title}"></td><td th:text="${b.receiptCode}"></td><td th:text="${b.status}"></td><td th:text="${b.borrowFee}"></td><td th:text="${b.dueDate}"></td><td th:text="${b.notes}"></td><td><a th:href="@{/user/receipt/{id}(id=${b.id})}">Xem phiếu</a></td></tr></tbody></table></div><p th:if="${#lists.isEmpty(borrows)}">Bạn chưa có phiếu mượn.</p>
+</main></body></html>
